@@ -17,9 +17,19 @@ typedef struct s_paths {
     char    *ea_path;
 } t_paths;
 
+typedef struct  s_textures {
+    // unsigned long   no_texture;
+    // unsigned long   so_texture;
+    // unsigned long   we_texture;
+    // unsigned long   ea_texture;
+    long   sky_hex;
+    long   floor_hex;
+} t_textures;
 
 typedef struct  s_game_data {
-    char    **file_content;
+    char        **file_content;
+    t_paths     paths;
+    t_textures  textures;
 } t_game_data;
 
 size_t	ft_strlen(const char *s);
@@ -29,9 +39,15 @@ char	**ft_split(char const *s, char c);
 char	*ft_strchr(const char *s, int c);
 char	*get_next_line(int fd);
 int     ft_strncmp(const char *s1, const char *s2, size_t n);
+char	*ft_strnstr(const char *haystack, const char *needle, size_t len);
 
+void    init_struct(t_game_data *game_data);
 int     check_extension(char *file, char *extension);
-int     store_map(char *path, t_game_data *data);
+int     get_file_content(char *path, t_game_data *data);
+char    *return_rgb_string(char *line);
+long    rgb_to_hex(char *line);
+int     parse_values(t_game_data *data);
+
 
 
 # endif
