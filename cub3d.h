@@ -45,12 +45,17 @@ char	*ft_strnstr(const char *haystack, const char *needle, size_t len);
 void    init_struct(t_game_data *game_data);
 int     check_extension(char *file, char *extension);
 int     get_file_content(char *path, t_game_data *data);
-char    *return_rgb_string(char *line);
-long    rgb_to_hex(char *line);
-int     parse_values(t_game_data *data, int length);
+int     store_textures(t_game_data *data, int length);
+int     is_map_line(char *line);
+int     empty_line(char *line);
 int     check_if_map_line(char *line);
 void    get_values(t_game_data *data);
-int    store_map(t_game_data *data, int index);
+int     store_map(t_game_data *data, int index);
 
+int     check_path_rgb(t_game_data *data);
+
+
+char    *return_rgb_string(char *line);
+long    rgb_to_hex(char *line);
 
 # endif
