@@ -28,6 +28,7 @@ typedef struct  s_textures {
 
 typedef struct  s_game_data {
     char        **file_content;
+    char        **map;
     t_paths     paths;
     t_textures  textures;
 } t_game_data;
@@ -46,8 +47,10 @@ int     check_extension(char *file, char *extension);
 int     get_file_content(char *path, t_game_data *data);
 char    *return_rgb_string(char *line);
 long    rgb_to_hex(char *line);
-int     parse_values(t_game_data *data);
-
+int     parse_values(t_game_data *data, int length);
+int     check_if_map_line(char *line);
+void    get_values(t_game_data *data);
+int    store_map(t_game_data *data, int index);
 
 
 # endif

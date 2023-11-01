@@ -6,11 +6,12 @@ int main (int ac, char **av) {
     if (ac != 2)
         return (EXIT_FAILURE);
     init_struct(&game_data);
-    printf("at init \t\tsky hex val == %ld floor hex val == %ld\n", game_data.textures.sky_hex, game_data.textures.floor_hex);
     if (get_file_content(av[1], &game_data) == 0)
     {
-        if (parse_values(&game_data) == 0) {}
-            printf("after init \t\tsky hex val == %ld floor hex val == %ld\n", game_data.textures.sky_hex, game_data.textures.floor_hex);
+        get_values(&game_data);
+        for (int i = 0; game_data.map[i] != NULL; i++) {
+            printf("%s", game_data.map[i]);
+        }
     }
     return (EXIT_SUCCESS);
 }

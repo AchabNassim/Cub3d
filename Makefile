@@ -4,7 +4,7 @@ CC = cc
 
 FLAGS = -Wall -Wextra -Werror
 
-SRC = main.cpp check_utils.c
+SRC = main.cpp check_utils.c rgb_conversion.c
 
 GNL_SRC = get_next_line/get_next_line.c get_next_line/get_next_line_utils.c
 
