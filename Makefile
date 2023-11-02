@@ -1,10 +1,10 @@
-NAME = cub3d
+NAME = cub3D
 
 CC = cc
 
-FLAGS = -Wall -Wextra -Werror
+FLAGS = -Wall -Wextra -Werror #-g -fsanitize=address
 
-SRC = main.cpp check_utils.c rgb_conversion.c get_file_data.c init_data.c store_data.c
+SRC = main.cpp rgb_conversion.c get_file_data.c init_data.c store_data.c check_map_utils.c file_parser.c check_player.c
 
 GNL_SRC = get_next_line/get_next_line.c get_next_line/get_next_line_utils.c
 

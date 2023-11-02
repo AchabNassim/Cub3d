@@ -5,13 +5,6 @@ int main (int ac, char **av) {
 
     if (ac != 2)
         return (EXIT_FAILURE);
-    init_struct(&game_data);
-    if (get_file_content(av[1], &game_data) == 0)
-    {
-        get_values(&game_data);
-        for (int i = 0; game_data.map[i] != NULL; i++) {
-            printf("%s", game_data.map[i]);
-        }
-    }
+    init_game(av[1], &game_data);
     return (EXIT_SUCCESS);
 }

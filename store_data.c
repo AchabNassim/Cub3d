@@ -31,7 +31,18 @@ int store_textures(t_game_data *data, int length)
     exit (1);
 }
 
+int map_length(t_game_data *data, int index)
+{
+    int i;
 
+    i = 0;
+    while (data->file_content[index] != NULL)
+    {
+        i++;
+        index++;
+    }
+    return (i);
+}
 
 int    store_map(t_game_data *data, int index)
 {
@@ -40,11 +51,12 @@ int    store_map(t_game_data *data, int index)
     i = 0;
     while (data->file_content[index] != NULL && (empty_line(data->file_content[index]) == 0))
         index++;
+    data->map = malloc((map_length(data, index) + 1) * sizeof(char *));
     while (data->file_content[index] != NULL)
     {
-            data->map[i] = data->file_content[index];
-            i++;
-            index++;
+        data->map[i] = data->file_content[index];
+        i++;
+        index++;
     }
     data->map[i] = NULL;
     return (0);

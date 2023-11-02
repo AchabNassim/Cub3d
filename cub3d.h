@@ -26,11 +26,18 @@ typedef struct  s_textures {
     long   floor_hex;
 } t_textures;
 
+typedef struct s_player {
+    int     i;
+    int     j;
+    char    direction;
+} t_player;
+
 typedef struct  s_game_data {
     char        **file_content;
     char        **map;
     t_paths     paths;
     t_textures  textures;
+    t_player    player;
 } t_game_data;
 
 size_t	ft_strlen(const char *s);
@@ -44,18 +51,27 @@ char	*ft_strnstr(const char *haystack, const char *needle, size_t len);
 
 void    init_struct(t_game_data *game_data);
 int     check_extension(char *file, char *extension);
-int     get_file_content(char *path, t_game_data *data);
+void    get_file_content(char *path, t_game_data *data);
 int     store_textures(t_game_data *data, int length);
 int     is_map_line(char *line);
 int     empty_line(char *line);
 int     check_if_map_line(char *line);
-void    get_values(t_game_data *data);
+void    parse_file_content(t_game_data *data);
 int     store_map(t_game_data *data, int index);
 
 int     check_path_rgb(t_game_data *data);
+void    check_map(t_game_data *data);
+void    init_game(char *path_file, t_game_data *data);
 
 
 char    *return_rgb_string(char *line);
 long    rgb_to_hex(char *line);
+
+void    duplicate_player(t_game_data *data);
+void    get_player_pos(t_game_data *data);
+void    check_dimensions(t_game_data *data);
+void    check_valid_path(t_game_data *data, int i, int j);
+
+
 
 # endif
