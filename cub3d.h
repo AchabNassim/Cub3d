@@ -70,7 +70,8 @@ long    rgb_to_hex(char *line);
 void    duplicate_player(t_game_data *data);
 void    get_player_pos(t_game_data *data);
 void    check_dimensions(t_game_data *data);
-void    check_valid_path(t_game_data *data, int i, int j);
+void    check_walls(t_game_data *data);
+void    check_valid_path(t_game_data *data);
 
 
 

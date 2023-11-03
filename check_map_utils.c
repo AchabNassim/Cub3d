@@ -61,28 +61,95 @@ void    check_dimensions(t_game_data *data)
         }
         i++;
     }
-    if (i > 20)
+    if (i > 30)
     {
         printf("Row height surpassed (max 20)");
         exit (1);
     }
 }
 
-
-void    check_valid_path(t_game_data *data, int i, int j)
+void    check_walls(t_game_data *data)
 {
-    printf("char found is %c\n", data->map[i][j]);
-    if ((i < 0 || j < 0) || !data->map[i] || !data->map[i][j] || data->map[i][j] == '1' || data->map[i][j] == '\n')
-        return ;
-    else if (data->map[i][j] == ' ' || data->map[i][j] == '\t' || data->map[i][j] == '\n')
+    int i;
+    int j;
+    
+    i = 0;
+    while (data->map[i])
     {
-        printf("char found is %c\n", data->map[i][j]);
-        printf("Path is not valid\n");
-        exit (1);
+        j = 0;
+        while (data->map[i][j] && data->map[i][j] != '\n')
+        {
+            if (i == 0 || data->map[i + 1] == NULL)
+            {
+                if (data->map[i][j] != '1')
+                    exit (1);
+            }
+            else if (j == 0 || data->map[i][j + 1] == '\n')
+            {
+                if (data->map[i][j] != '1')
+                    exit (1);
+            }
+            j++;
+        }
+        i++;
     }
-    printf("char found is %c\n", data->map[i][j]);
-    check_valid_path(data, i, j + 1);
-    check_valid_path(data, i, j - 1);
-    check_valid_path(data, i + 1, j);
-    check_valid_path(data, i - 1, j);
+}
+
+size_t get_index(char *line, char *needle)
+{
+    size_t i;
+
+    i = 0;
+    while (*line && line != needle)
+    {
+        line++;
+        i++;
+    }
+    return (i);
+}
+
+int check_cells(t_game_data *data, int i, int j)
+{
+    if ((data->map[i][j + 1] != '0' && data->map[i][j + 1] != data->player.direction && data->map[i][j + 1] != '1'))
+    {
+        return (1);
+    }
+    else if ((data->map[i][j - 1] != '0' && data->map[i][j - 1] != data->player.direction && data->map[i][j - 1] != '1'))
+    {
+        return (1);
+    }
+    else if ((data->map[i + 1][j] != '0' && data->map[i + 1][j] != data->player.direction && data->map[i + 1][j] != '1') || get_index(data->map[i], &data->map[i][j]) > ft_strlen(data->map[i + 1]))
+    {
+        return (1);
+    }
+    else if ((data->map[i - 1][j] != '0' && data->map[i - 1][j] != data->player.direction && data->map[i - 1][j] != '1') || get_index(data->map[i], &data->map[i][j]) > ft_strlen(data->map[i - 1]))
+    {
+        return (1);
+    }
+    return (0);
+}
+
+void    check_valid_path(t_game_data *data)
+{
+    int i;
+    int j;
+
+    i = 0;
+    while (data->map[i])
+    {
+        j = 0;
+        while (data->map[i][j] && data->map[i][j] != '\n')
+        {
+            if ((i > 0 && j > 0) && (data->map[i][j] == data->player.direction || data->map[i][j] == '0') && (data->map[i + 1] != NULL))
+            {
+                if (check_cells(data, i, j) == 1)
+                {
+                    printf("Map path isn't valid\n");
+                    exit (1);
+                }
+            }
+            j++;
+        }
+        i++;
+    }
 }

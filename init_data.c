@@ -45,6 +45,7 @@ void init_game(char *path_file, t_game_data *data)
     duplicate_player(data);
     get_player_pos(data);
     check_dimensions(data);
-    check_valid_path(data, data->player.i, data->player.j);
+    check_walls(data);
+    check_valid_path(data);
     printf("runs well\n");
 }
