@@ -1,7 +1,7 @@
-NO  img/ael-bekk.xpm
-SO img/mel-hada.xpm
-WE img/mabenchi.xpm
-EA img/zboudair.xpm
+NO  img/no.xpm
+SO img/so.xpm
+WE img/we.xpm
+EA img/ea.xpm
     
 F 98,105,109
 C 80,130,200
@@ -9,6 +9,6 @@ C 80,130,200
 
 
 111
-11
+101
 1N11
 11111
